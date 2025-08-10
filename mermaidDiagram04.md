@@ -3,7 +3,8 @@ sequenceDiagram
 participant browser 
 participant server
 
-browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note %%this happens when the save button is clicked
+ %%this happens when the save button is clicked
+browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
 activate server
 server->>browser: 302 redirect to /exampleapp/notes
 deactivate server
