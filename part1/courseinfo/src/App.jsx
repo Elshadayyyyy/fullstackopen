@@ -8,23 +8,27 @@ const Header = (props) => {
 
 const Part = (props) => {
   return (
-    <p><em>{props.part.name}  </em> is a part of the course and has <em>{props.part.exercises} </em> number of exercises</p>)
+    <p><em>{props.part.name}  </em> is a part of the course and has <em>{props.part.exercises} </em> number of exercises</p>
+  )
 }
-const Content = (props) => {
-  console.log(props)
+const Content = ({ parts }) => {
+  console.log(parts)
   return (
     <>
-      <Part part={props.part1} />
-      <Part part={props.part2} />
-      <Part part={props.part3} />
+      {parts.map((part, index) => (
+        <Part key={index} part={part} />
+      ))}
+
+
     </>
   )
 }
 
-const Total = (props) => {
+const Total = ({ parts }) => {
+  const total = parts.reduce((sum, part) => sum + part.exercises, 0);
   return (
     <>
-      <p>the total number of exercise for this couse is: <em>{props.part1.exercises + props.part2.exercises + props.part3.exercises}</em>
+      <p>the total number of exercise for this couse is: <em> {total} </em>
 
       </p>
     </>
@@ -32,34 +36,36 @@ const Total = (props) => {
 }
 const App = () => {
   const course = 'half stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }]
 
   return (
     <>
       <Header course={course} />
-      <Content
-        part1={part1}
-        part2={part2}
-        part3={part3}
-      />
-      <Total
-        part1={part1}
-        part2={part2}
-        part3={part3}
-      />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </>
   )
 }
 
+const students = [
+  { name: "Alice", score: 80 },
+  { name: "Bob", score: 90 },
+  { name: "Charlie", score: 70 },
+];
+
+
+
 export default App;
+
