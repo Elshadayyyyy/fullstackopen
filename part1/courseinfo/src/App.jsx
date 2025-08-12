@@ -1,14 +1,14 @@
-const Header = (props) => {
+const Header = ({course}) => {
   return (
     <>
-      <h1> {props.course} </h1>
+      <h1> {course.name} </h1>
     </>
   )
 }
 
-const Part = (props) => {
+const Part = ({part}) => {
   return (
-    <p><em>{props.part.name}  </em> is a part of the course and has <em>{props.part.exercises} </em> number of exercises</p>
+    <p><em>{part.name}  </em> is a part of the course and has <em>{part.exercises} </em> number of exercises</p>
   )
 }
 const Content = ({ parts }) => {
@@ -35,37 +35,31 @@ const Total = ({ parts }) => {
   )
 }
 const App = () => {
-  const course = 'half stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }]
+  const course = {
+    name: 'half stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }]
+  }
 
   return (
     <>
       <Header course={course} />
-      <Content parts={parts} />
-      <Total parts={parts} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </>
   )
 }
-
-const students = [
-  { name: "Alice", score: 80 },
-  { name: "Bob", score: 90 },
-  { name: "Charlie", score: 70 },
-];
-
-
 
 export default App;
 
